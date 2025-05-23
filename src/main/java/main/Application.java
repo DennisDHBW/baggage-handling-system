@@ -2,8 +2,11 @@ package main;
 
 import baggage.Baggage;
 import baggage.BaggageTag;
+import conveyorBelt.IConveyorBelt;
+import conveyorBelt.IncomingConveyorBelt;
 import lombok.extern.slf4j.Slf4j;
 import scanner.CheckInScanner;
+import scanner.IScanner;
 import shared.Location;
 import utility.Utility;
 
@@ -16,7 +19,8 @@ public class Application {
     public static void main(String[] args) {
 
         Map<String, Location> baggageLocation = new HashMap<>();
-        CheckInScanner scanner = new CheckInScanner();
+        IScanner scanner = new CheckInScanner();
+        IConveyorBelt conveyorBelt = new IncomingConveyorBelt();
 
         // create baggage with baggage tag
         Baggage baggage = Baggage.builder()
@@ -31,8 +35,18 @@ public class Application {
                 .build();
         baggage.setBaggageTag(baggageTag);
 
+        // check-in & put conveyor belt
         BaggageTag scannedBaggageTag = scanner.scan(baggage);
         baggageLocation.put(scannedBaggageTag.getBarcode(), Location.CHECK_IN);
+
+        // conveyor belt
+        if (conveyorBelt.receiveBaggage(baggage)) {
+            baggageLocation.put(scannedBaggageTag.getBarcode(), Location.INCOMING_CONVEYOR_BELT);
+        }
+        conveyorBelt.transferBaggage();
+
+        //
+
         log.info(baggageLocation.toString());
     }
 }
