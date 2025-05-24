@@ -19,6 +19,7 @@ import java.util.List;
 import java.util.Random;
 
 @Slf4j
+=======
 public class Application {
 
     private static final Random random = new Random();
@@ -200,5 +201,8 @@ public class Application {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
+=======
+        System.out.println("Hello World!");
+
     }
 }
