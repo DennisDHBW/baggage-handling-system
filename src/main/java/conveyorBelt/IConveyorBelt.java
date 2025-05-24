@@ -1,5 +1,5 @@
 package conveyorBelt;
 
-public interface IConveyor {
+public interface IConveyorBelt {
     void acceptBaggage(String barcode);
 }

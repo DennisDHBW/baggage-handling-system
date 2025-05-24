@@ -3,8 +3,8 @@ package main;
 import bufferChannel.IBufferChannel;
 import bufferChannel.SimpleBuffer;
 import controlModule.ControlModule;
-import conveyorBelt.EntryConveyor;
-import conveyorBelt.IConveyor;
+import conveyorBelt.ConveyorBelt;
+import conveyorBelt.IConveyorBelt;
 import grabber.GateGrabber;
 import grabber.IGrabber;
 import scanner.CameraScanner;
@@ -19,7 +19,6 @@ import java.util.List;
 import java.util.Random;
 
 @Slf4j
-=======
 public class Application {
 
     private static final Random random = new Random();
@@ -29,7 +28,7 @@ public class Application {
 
         // Initialize system components
         ControlModule controlModule = new ControlModule();
-        IConveyor entryConveyor = new EntryConveyor(controlModule);
+        IConveyorBelt entryConveyor = new ConveyorBelt(controlModule);
         IScanner cameraScanner = new CameraScanner(controlModule);
         ISorter sortingUnit = new SortingUnit(controlModule);
         IBufferChannel bufferChannel = new SimpleBuffer(controlModule);
@@ -75,7 +74,7 @@ public class Application {
     }
 
     private static void processIndividualBaggage(String barcode, ControlModule controlModule,
-                                                 IConveyor entryConveyor, IScanner cameraScanner,
+                                                 IConveyorBelt entryConveyor, IScanner cameraScanner,
                                                  ISorter sortingUnit, IBufferChannel bufferChannel,
                                                  IGrabber gateGrabber) {
 
@@ -201,8 +200,5 @@ public class Application {
         } catch (InterruptedException e) {
             Thread.currentThread().interrupt();
         }
-=======
-        System.out.println("Hello World!");
-
     }
 }

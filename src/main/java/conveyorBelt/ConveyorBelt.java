@@ -5,7 +5,7 @@ import lombok.RequiredArgsConstructor;
 import shared.Location;
 
 @RequiredArgsConstructor
-public class EntryConveyor implements IConveyor {
+public class ConveyorBelt implements IConveyorBelt {
     private final IControlModule control;
 
     @Override
