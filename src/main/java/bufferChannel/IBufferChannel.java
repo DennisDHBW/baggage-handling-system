@@ -1,6 +1,8 @@
 package bufferChannel;
 
+import baggage.BaggageTag;
+
 public interface IBufferChannel {
-    void buffer(String barcode);
-    void releaseIfPossible();
+    void buffer(BaggageTag tag, String targetBand);
+    void attemptRelease(String bandName);
 }

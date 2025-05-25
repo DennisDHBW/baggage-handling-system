@@ -1,17 +1,17 @@
 package controlModule;
 
-import shared.Location;
-
-import java.util.List;
+import baggage.Baggage;
+import baggage.BaggageTag;
+import bufferChannel.IBufferChannel;
 
 public interface IControlModule {
-    void register(String barcode);
-    void updateLocation(String barcode, Location newLocation);
-    Location getLocation(String barcode);
-    boolean isDestinationAvailable(String destination);
-    void complete(String barcode);
-    void bufferBaggage(String barcode);
-    void releaseBufferedBaggage();
-    void setDestinationStatus(String destination, boolean isFree);
-    List<String> getBaggageAt(Location location);
+    void registerTag(BaggageTag tag);
+    void registerBand(String bandName);
+    void updateTagLocation(BaggageTag tag, String location);
+    boolean isBandFree(String bandName);
+    void markBandFull(String bandName);
+    void markBandFree(String bandName);
+    Baggage getBooking(String tagCode);
+    void completeTag(BaggageTag tag);
+    void setBufferChannel(IBufferChannel channel);
 }

@@ -1,5 +1,7 @@
 package conveyorBelt;
 
+import baggage.BaggageTag;
+
 public interface IConveyorBelt {
-    void acceptBaggage(String barcode);
+    void receive(BaggageTag tag);
 }

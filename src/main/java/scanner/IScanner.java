@@ -1,5 +1,7 @@
 package scanner;
 
+import baggage.BaggageTag;
+
 public interface IScanner {
-    void scan(String barcode);
+    void scan(BaggageTag tag);
 }
